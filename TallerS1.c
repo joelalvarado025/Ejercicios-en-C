@@ -19,7 +19,7 @@ int main() {
         printf("Seleccione una opción: ");
         scanf("%d", &opcion);
 
-        switch(opcion) {
+    switch(opcion) {
             case 1:
                 printf("Ingrese el ID del producto: ");
                 scanf("%d", &id);
