@@ -34,7 +34,7 @@ int main() {
                     fflush(stdin);
                     val = scanf("%d", &stock);
                     if (stock < 1){
-                        printf("El stock no puede ser negativo ni cero, vualva a ingresar el valor\n");
+                        printf("El stock no puede ser negativo ni cero, vuelva a ingresar el valor\n");
                     }
                     if (val != 1)
                     {
@@ -47,33 +47,50 @@ int main() {
         
                 break;
             case 2:
-                do
-                {
+                do {
                     printf("Ingrese la cantidad a vender: ");
                     val = scanf("%d", &cantidad);
-                    if (cantidad < 1){
-                        printf("La cantidad no puede ser negativo ni cero, vualva a ingresar el valor\n");
+                    if (cantidad < 1) {
+                    printf("La cantidad no puede ser negativa ni cero, vuelva a ingresar el valor\n");
                     }
-                    if (val != 1)
-                    {
-                        printf("Se ingreso un valor incorrecto, vuelva a ingresar el valor\n");
+                    if (val != 1) {
+                    printf("Se ingresó un valor incorrecto, vuelva a ingresar el valor\n");
+                    fflush(stdin);
                     }
-                    if (cantidad > stock){
-                        printf("No se puede realizar la venta, no existe suficiente stock, vuelva a ingresar el valor\n");
+                    if (cantidad > stock) {
+                    printf("No se puede realizar la venta, no hay suficiente stock, vuelva a ingresar el valor\n");
                     }
                 } while (val != 1 || cantidad < 1 || cantidad > stock);
-                venta = cantidad * precio;
-                printf("El valor de la venta actua es: %f\n",venta);
-                stock-=cantidad;
-                total_ganancias+=venta;
+
+                    if (cantidad >= 20) {
+                    venta = cantidad * precio * 0.75;  // 25% de descuento
+                    printf("\n\tSe aplicó un descuento del 25%% por comprar 20 o más unidades.\n");
+                } else {
+                    venta = cantidad * precio;
+                }
+
+                printf("\tEl valor de la venta actual es: %.2f\n", venta);
+
+                stock -= cantidad;
+                total_ganancias += venta;
 
                 break;
 
             case 3:
-                printf("Ingrese la cantidad a agregar al stock: ");
-                scanf("%d", &cantidad);
-                stock+=cantidad;
-                
+                do {
+                    printf("Ingrese la cantidad a agregar al stock: ");
+                    val = scanf("%d", &cantidad);
+                    if (cantidad < 1) {
+                    printf("La cantidad debe ser mayor que cero. Inténtelo nuevamente.\n");
+                    }
+                    if (val != 1) {
+                    printf("Se ingresó un valor incorrecto. Inténtelo nuevamente.\n");
+                    fflush(stdin);
+                    }
+                } while (val != 1 || cantidad < 1);
+
+                stock += cantidad; 
+                printf("\tStock actualizado correctamente.\n");
                 
                 break;
 
@@ -90,7 +107,7 @@ int main() {
                 break;
 
             case 6:
-                printf("Saliendo del programa...\n");
+                printf("Saliendo del programa, tenga un buen dia\n");
                 break;
 
             default:
